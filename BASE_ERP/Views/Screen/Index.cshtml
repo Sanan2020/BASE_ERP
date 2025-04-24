@@ -1,0 +1,553 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<style>
+    .frame-btn-onMobile {
+        /* background-color: khaki; */
+        width: 70px;
+        height: 150px;
+        justify-items: center;
+        text-align: center
+    }
+
+    .btn-onMobile {
+        background-color: cornflowerblue;
+        width: 65px;
+        height: 65px;
+        border-radius: 10px;
+        border-style: none
+    }
+
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: sans-serif;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #007bff;
+        color: white;
+        width: 40%;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+
+    .planing {
+        color: white;
+    }
+</style>
+
+@* -----------------Test-------------------------- *@
+
+<div class="container hide">
+    <div class="row row-cols-4 row-cols-sm-5 row-cols-md-6">
+        @{
+            var menuItems = new List<string> {
+        "ขาย","ขาย ||","ซื้อ","สถานะสินค้าคงคลัง","สมุดคลังสินค้า","บันทึกการทำงานของยานพาหนะ","การจัดเก็บภาพ","อีเมล","E Note","ดูบาร์โค้ดเอกสาร","ขอคำปรึกษาทางโทรศัพท์","แปลงบาร์โค้ด"
+        };
+            // menuItems.RemoveAt(0);
+        }
+
+        @foreach (var item in menuItems)
+        {
+            <div class="col">
+                <div class="frame-btn-onMobile">
+                    <button class="btn-onMobile" onclick="window.location.href='/Mobile/Index'"></button>
+                    <div>@item</div>
+                </div>
+            </div>
+        }
+
+        <div class="col">
+            <div class="frame-btn-onMobile">
+                <button class="btn-onMobile" style="background-color:darkcyan; font-size: 28px; color: white;" onclick=" window.location.href='/Mobile/MenuERP'">+</button>
+                <div style="">เพิ่มเมนู</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="hide">
+    <div style="display:flex;justify-content:center">
+        <div style="padding-top:10px;display:flex;justify-content:space-around;align-items:center; position: fixed; bottom: 0;background-color:lightsteelblue;width:98%;border-radius:10px;">
+            <div style="width:70px;height:90px; justify-items:center;text-align:center">
+                <button style="background-color:cornflowerblue; width:65px;height:65px;border-radius:10px;border-style:none">ERP</button>
+                <div style="">ERP</div>
+            </div>
+            <div style="width:70px;height:90px; justify-items:center;text-align:center">
+                <button style="background-color:cornflowerblue; width:65px;height:65px;border-radius:10px;border-style:none">ข้อความ</button>
+                <div style="">ข้อความ</div>
+            </div>
+            <div style="width:70px;height:90px; justify-items:center;text-align:center">
+                <button style="background-color:cornflowerblue; width:65px;height:65px;border-radius:10px;border-style:none">ห้องสนทนา</button>
+                <div style="">ห้องสนทนา</div>
+            </div>
+            <div style="width:70px;height:90px; justify-items:center;text-align:center">
+                <button style="background-color:cornflowerblue; width:65px;height:65px;border-radius:10px;border-style:none">ตั้งค่า</button>
+                <div style="">ตั้งค่า</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* <div id="container" style="width: 100%; height: 100vh; overflow: hidden; position: relative;"> *@
+@*     <div class="page" style="background: lightblue;">หน้า 1</div> *@
+@*     <div class="page" style="background: lightcoral;">หน้า 2</div> *@
+@*     <div class="page" style="background: lightgreen;">หน้า 3</div> *@
+@* </div> *@
+
+@* <style> *@
+@*     #container { *@
+@*         display: flex; *@
+@*         transition: transform 0.4s ease-in-out; *@
+@*     } *@
+
+@*     .page { *@
+@*         flex: 0 0 100%; *@
+@*         height: 100vh; *@
+@*         display: flex; *@
+@*         align-items: center; *@
+@*         justify-content: center; *@
+@*         font-size: 2rem; *@
+@*     } *@
+@* </style> *@
+
+@* <script> *@
+@*     let container = document.getElementById('container'); *@
+@*     let currentPage = 0; *@
+@*     let startX = 0; *@
+
+@*     container.addEventListener('touchstart', (e) => { *@
+@*         startX = e.touches[0].clientX; *@
+@*     }); *@
+
+@*     container.addEventListener('touchend', (e) => { *@
+@*         let endX = e.changedTouches[0].clientX; *@
+@*         let diff = startX - endX; *@
+
+@*         if (diff > 50 && currentPage < 2) { *@
+@*             currentPage++; *@
+@*         } else if (diff < -50 && currentPage > 0) { *@
+@*             currentPage--; *@
+@*         } *@
+
+@*         container.style.transform = `translateX(-${currentPage * 100}%)`; *@
+@*     }); *@
+@* </script> *@
+
+
+
+
+@* -------------------On Web site----------------------- *@
+
+<div style="display:flex">
+
+    <div class="my-table" style="width:100%; border:solid 1px;border-radius:10px; margin-left:10px;">
+        <h3 style="margin-left:15px;">สถานะสินค้าคงคลัง</h3>
+        <table style="width:100%; border-collapse: collapse;" border="1">
+            <thead style="background-color: #f2f2f2;">
+                <tr style="text-align:center">
+                    <th>รหัสสินค้า</th>
+                    <th>ชื่อสินค้า</th>
+                    <th>จำนวนคงเหลือ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>A001</td>
+                    <td>เครื่องซักผ้า</td>
+                    <td>218.00</td>
+                </tr>
+                <tr>
+                    <td>A002</td>
+                    <td>ทีวี 90 นิ้ว</td>
+                    <td>208.00</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+    <div class="my-table" style="width:50%; border:solid 1px;border-radius:10px; margin-left:10px;">
+        <h3 style="margin-left:15px;">สถานะการสั่งซื้อ</h3>
+        <table style="width:100%; border-collapse: collapse;" border="1">
+            <thead style="background-color: #f2f2f2;">
+                <tr style="text-align:center">
+                    <th>วันที่-หมายเลข</th>
+                    <th>ชื่ชื่อสินค้า [ข้อมูลจำเพาะ]</th>
+                    <th>จำนวน</th>
+                    <th>ราคาต่อหน่วย</th>
+                    <th>จำนวนเงิน</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>01 ธ.ค. 2566-1</td>
+                    <td>แอปเปิ้ล [5kg]</td>
+                    <td>58</td>
+                    <td>100</td>
+                    <td>5,800</td>
+                </tr>
+                <tr>
+                    <td>01 ธ.ค. 2566-1</td>
+                    <td>แอปเปิ้ล [2kg]</td>
+                    <td>26</td>
+                    <td>40</td>
+                    <td>1,040</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<div class="box1">
+
+
+    <div style="display:flex;">
+
+        <div style="margin-left:10px;margin-top:10px;width:50%; border:solid 1px;border-radius:10px;">
+            <h3 style="margin-left:10px;">ผังงาน</h3>
+
+            <div style="margin-left:10px;display:flex; justify-content:space-around;align-items:start">
+                <div style="width:10%;height:10%; justify-items:center;text-align:center">
+                    <button style="background-color:azure; width:65px;height:65px;border-radius:24px;border-style:none">
+                        <img src="/images/CustomerSeller.png" width="40" height="40">
+                    </button>
+                    <div class="planing" style="background-color:grey;">ลูกค้า/ผู้ขาย</div>
+                </div>
+                <div style="width:10%;height:10%;justify-items:center;text-align:center">
+                    <button style="background-color:azure;width:65px;height:65px;border-radius:24px;border-style:none">
+                        <img src="/images/product.png" width="40" height="40">
+                    </button>
+                    <div class="planing" style="background-color:grey;">สินค้า</div>
+                </div>
+                <div style="width:10%;height:10%; justify-items:center;text-align:center">
+                    <button style="background-color:azure; width:65px;height:65px;border-radius:24px;border-style:none">
+                        <img src="/images/location.png" width="40" height="40">
+                    </button>
+                    <div class="planing" style="background-color:grey;">สถานที่</div>
+                </div>
+                <div style="width:10%;height:10%;justify-items:center;text-align:center">
+                    <button style="background-color:azure; width:65px;height:65px;border-radius:24px;border-style:none">
+                        <img src="/images/tax.png" width="40" height="40">
+                    </button>
+                    <div class="planing" style="background-color:grey;">ภาษี</div>
+                </div>
+                <div style="width:10%;height:10%;justify-items:center;text-align:center">
+                    <button style="background-color:azure; width:65px;height:65px;border-radius:24px;border-style:none">
+                        <img src="/images/notes.png" width="40" height="40">
+                    </button>
+                    <div class="planing" style="background-color:grey;">ตั้งค่า</div>
+                </div>
+            </div>
+
+            <div style="height:30px;">
+            </div>
+
+            <div style="margin-left:10px;display:flex; justify-content:space-around;align-items:start">
+                <div style="width:10%;height:10%; justify-items:center;text-align:center">
+                    <button style="background-color:azure; width:65px;height:65px;border-radius:24px;border-style:none">
+                        <img src="/images/quotation.png" width="40" height="40">
+                    </button>
+                    <div class="planing" style="background-color:deepskyblue">ใบเสนอราคา</div>
+                </div>
+
+                <div style="width:10%;height:10%;justify-items:center;text-align:center">
+                    <button style="background-color:azure;width:65px;height:65px;border-radius:24px;border-style:none">
+                        <img src="/images/SalesOrder.png" width="40" height="40">
+                    </button>
+                    <div class="planing" style="background-color:deepskyblue">ใบสั่งขาย</div>
+                </div>
+                <div style="width:10%;height:10%; justify-items:center;text-align:center">
+                    <button style="background-color:azure; width:65px;height:65px;border-radius:24px;border-style:none">
+                        <img src="/images/sell.png" width="40" height="40">
+                    </button>
+                    <div class="planing" style="background-color:deepskyblue">ขาย</div>
+                </div>
+                <div style="width:10%;height:10%;justify-items:center;text-align:center">
+                    <button style="background-color:white; width:65px;height:65px;border-radius:24px;border-style:none">
+                    </button>
+                    <div class="planing" style=""></div>
+                </div>
+                <div style="width:10%;height:10%;justify-items:center;text-align:center">
+                    <button style="background-color:azure; width:65px;height:65px;border-radius:24px;border-style:none">
+                        <img src="/images/ReceivePayment.png" width="40" height="40">
+                    </button>
+                    <div class="planing" style="background-color:red">รับชำระ</div>
+                </div>
+            </div>
+
+            <div style="height:10px;"></div>
+
+            <div style="width:60%; margin-left:10px;display:flex; justify-content:space-around;align-items:start">
+                <div style="width:10%;height:10%; justify-items:center;text-align:center">
+                    <button style="background-color:azure; width:65px;height:65px;border-radius:24px;border-style:none">
+                        <img src="/images/WorkOrder.png" width="40" height="40">
+                    </button>
+                    <div class="planing" style="background-color:deepskyblue">ใบสั่งงาน</div>
+                </div>
+                <div style="width:10%;height:10%;justify-items:center;text-align:center">
+                    <button style="background-color:azure;width:65px;height:65px;border-radius:24px;border-style:none">
+                        <img src="/images/PayProduct.png" width="40" height="40">
+                    </button>
+                    <div class="planing" style="background-color:deepskyblue">จ่ายสินค้า</div>
+                </div>
+                <div style="width:10%;height:10%; justify-items:center;text-align:center">
+                    <button style="background-color:azure; width:65px;height:65px;border-radius:24px;border-style:none">
+                        <img src="/images/production.png" width="40" height="40">
+                    </button>
+                    <div class="planing" style="background-color:deepskyblue">การผลิต</div>
+                </div>
+            </div>
+
+            <div style="height:10px;"></div>
+
+            <div style="margin-left:10px;display:flex; justify-content:space-around;align-items:start">
+                <div style="width:10%;height:10%; justify-items:center;text-align:center">
+                    <button style="background-color:azure; width:65px;height:65px;border-radius:24px;border-style:none">
+                        <img src="/images/PurchaseOrder.png" width="40" height="40">
+                    </button>
+                    <div class="planing" style="background-color:deepskyblue">ใบสั่งซื้อ</div>
+                </div>
+                <div style="width:10%;height:10%;justify-items:center;text-align:center">
+                    <button style="background-color:white;width:65px;height:65px;border-radius:24px;border-style:none">
+                        @* <img src="/images/ArrowSky.png" width="70" height="70"> *@
+                    </button>
+                    <div class="planing" style=""></div>
+                </div>
+                <div style="width:10%;height:10%;justify-items:center;text-align:center">
+                    <button style="background-color:azure;width:65px;height:65px;border-radius:24px;border-style:none">
+                        <img src="/images/PurchaseForm.png" width="40" height="40">
+                    </button>
+                    <div class="planing" style="background-color:deepskyblue">ใบซื้อ</div>
+                </div>
+                <div style="width:10%;height:10%;justify-items:center;text-align:center">
+                    <button style="background-color:white;width:65px;height:65px;border-radius:24px;border-style:none"></button>
+                    <div class="planing" style=""></div>
+                </div>
+                <div style="width:10%;height:10%; justify-items:center;text-align:center">
+                    <button style="background-color:azure; width:65px;height:65px;border-radius:24px;border-style:none">
+                        <img src="/images/payment.png" width="40" height="40">
+                    </button>
+                    <div class="planing" style="background-color:red">การชำระเงิน</div>
+                </div>
+            </div>
+
+            <div style="height:10px;"></div>
+
+            <div style="margin-left:10px;display:flex; justify-content:space-around;align-items:start">
+                <div style="width:10%;height:10%;justify-items:center;text-align:center">
+                    <button style="background-color:white;width:65px;height:65px;border-radius:24px;border-style:none"></button>
+                    <div class="planing" style=""></div>
+                </div>
+                <div style="width:10%;height:10%;justify-items:center;text-align:center">
+                    <button style="background-color:white;width:65px;height:65px;border-radius:24px;border-style:none"></button>
+                    <div class="planing" style=""></div>
+                </div>
+                <div style="width:10%;height:10%; justify-items:center;text-align:center">
+                    <button style="background-color:azure; width:65px;height:65px;border-radius:24px;border-style:none">
+                        <img src="/images/printer.png" width="40" height="40">
+                    </button>
+                    <div class="planing" style="background-color:limegreen">รายงานสินค้าคงคลัง</div>
+                </div>
+                <div style="width:10%;height:10%;justify-items:center;text-align:center">
+                    <button style="background-color:white;width:65px;height:65px;border-radius:24px;border-style:none"></button>
+                    <div class="planing" style=""></div>
+                </div>
+                <div style="width:10%;height:10%; justify-items:center;text-align:center">
+                    <button style="background-color:azure; width:65px;height:65px;border-radius:24px;border-style:none">
+                        <img src="/images/printer.png" width="40" height="40">
+                    </button>
+                    <div class="planing" style="background-color:limegreen">รายงานบัญชี</div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="my-table" style="width:50%; border:solid 1px;border-radius:10px; margin-left:10px;margin-top:10px;">
+            <h3 style="margin-left:15px;">สถานะการขาย</h3>
+            <table style="width:100%; border-collapse: collapse;" border="1">
+                <thead style="background-color: #f2f2f2;">
+                    <tr style="text-align:center">
+                        <th>วันที่-ลำดับ</th>
+                        <th>ชื่ชื่อสินค้า [ข้อมูลจำเพาะ]</th>
+                        <th>ชื่อลูกค้า/ผู้ขาย</th>
+                        <th>จำนวน</th>
+                        <th>ราคาต่อหน่วย</th>
+                        <th>จำนวนเงิน</th>
+                        <th>ภาษี</th>
+                        <th>ยอดรวม</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>13 05 2024-1</td>
+                        <td>ต่างหู</td>
+                        <td>บริษัท เบสเคาท์ จำกัด</td>
+                        <td>6.00</td>
+                        <td>1,588.79</td>
+                        <td>9,532.74</td>
+                        <td>667.26</td>
+                        <td>10,200.00</td>
+                    </tr>
+                    <tr>
+                        <td>13 05 2024-1</td>
+                        <td>น้ำหอม</td>
+                        <td>บริษัท เบสเคาท์ จำกัด</td>
+                        <td>9.00</td>
+                        <td>4,161.95</td>
+                        <td>36,933.66</td>
+                        <td>2,585.34</td>
+                        <td>39,519.00</td>
+                    </tr>
+                    <tr>
+                        <td>13 05 2024-1</td>
+                        <td>แหวน</td>
+                        <td>บริษัท เบสเคาท์ จำกัด</td>
+                        <td>6.00</td>
+                        <td>2,803.74</td>
+                        <td>16,822.44</td>
+                        <td>1,177.56</td>
+                        <td>18,000.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+
+<div style="display:flex">
+
+    <div class="box1" style="width:50%">
+
+        <div style="align-content:center;height:60px;margin-left:10px;margin-top:10px; border:solid 1px;border-radius:10px;">
+            <div style="display:flex;justify-content:space-between">
+                <h4 style="margin-left:10px;">เรียนรู้การใช้ BASE ERP</h4>
+                <div style="font-size: 24px; cursor: pointer;margin-right:10px;">⋮</div>
+            </div>
+        </div>
+
+        <div class="my-table" style="width:99%; border:solid 1px;border-radius:10px; margin-left:10px;margin-top:10px;">
+            <h3 style="margin-left:15px;">ประกาศ</h3>
+            <hr>
+            <p style="margin-left:10px">
+                orem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16
+                เมื่อเครื่องพิมพ์โนเนมเครื่องหนึ่งนำรางตัวพิมพ์มาสลับสับตำแหน่งตัวอักษรเพื่อทำหนังสือตัวอย่าง Lorem Ipsum อยู่ยงคงกระพันมาไม่ใช่แค่เพียงห้าศตวรรษ
+            </p>
+        </div>
+
+    </div>
+
+    <div class="my-table" style="margin-left:10px; width:50%; border:solid 1px;border-radius:10px; margin-left:10px;margin-top:10px;">
+        <h3 style="margin-left:15px;">สถานะการจ่ายสินค้า</h3>
+        <table style="width:100%; border-collapse: collapse;" border="1">
+            <thead style="background-color: #f2f2f2;">
+                <tr style="text-align:center">
+                    <th>วันที่-ลำดับ</th>
+                    <th>ชื่อสถานที่จ่ายสินค้า</th>
+                    <th>ชื่อสินค้า [ชื่อข้อมูลจำเพาะ]</th>
+                    <th>จำนวน</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>26 06 2024-1</td>
+                    <td>โกดังเก็บวัตถุดิบ</td>
+                    <td>สมุนไพร</td>
+                    <td>3,600</td>
+                </tr>
+                <tr>
+                    <td>26 06 2024-1</td>
+                    <td>โกดังเก็บวัตถุดิบ</td>
+                    <td>เครื่องหอม</td>
+                    <td>3,600</td>
+                </tr>
+                <tr>
+                    <td>26 06 2024-1</td>
+                    <td>โกดังเก็บวัตถุดิบ</td>
+                    <td>สารสกัดจากตัวยา</td>
+                    <td>3,600</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+
+
+
+<!-- FullCalendar CSS -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
+
+<!-- FullCalendar JS -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+<div class="box1">
+
+    <div style="margin-left:10px;margin-top:10px;width:50%; border:solid 1px;border-radius:10px;">
+        <div id="calendar"></div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+              var calendarEl = document.getElementById('calendar');
+
+              var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                height: 'auto',
+                selectable: true,
+
+                // ดัก event ตอนคลิกวันที่
+                dateClick: function (info) {
+                  alert('คุณเลือกวันที่: ' + info.dateStr);
+                  // หรือเรียก AJAX ส่งไป Controller ก็ได้
+                },
+
+                events: [
+                  {
+                    title: 'ประชุมทีม',
+                    start: '2025-04-25'
+                  },
+                  {
+                    title: 'ส่งรายงาน',
+                    start: '2025-04-28'
+                  }
+                ]
+              });
+
+              calendar.render();
+            });
+        </script>
+
+    </div>
+</div>

@@ -1,0 +1,70 @@
+﻿@using BASE_ERP.Views.Shared
+@{
+    ViewData["Title"] = "Privacy Policy";
+    var menuId = ViewBag.id;
+}
+<style>
+
+    .navhor {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 15%;
+        background-color: #f1f1f1;
+        position: fixed;
+        height: 100%;
+        overflow: auto;
+    }
+
+    li a {
+        display: block;
+        color: #000;
+        padding: 4px 8px;
+        text-decoration: none;
+    }
+
+        li a.active {
+            background-color: lightslategrey;
+            color: white;
+        }
+
+        li a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+        }
+</style>
+@* <h1>@ViewData["Title"]</h1> *@
+
+@* <p>Use this page to detail your site's privacy policy.</p> *@
+<ul class="navhor">
+    @switch (menuId)
+    {
+        case 10:
+            <component type="typeof(Component10)" render-mode="ServerPrerendered" />
+            break;
+        case 20:
+            <component type="typeof(Component20)" render-mode="ServerPrerendered" />
+            break;
+        case 30:
+            <component type="typeof(Component30)" render-mode="ServerPrerendered" />
+            break;
+        case 40:
+            <component type="typeof(Component40)" render-mode="ServerPrerendered" />
+            break;
+        case 50:
+            <component type="typeof(Component50)" render-mode="ServerPrerendered" />
+            break;
+        case 60:
+            <component type="typeof(Component60)" render-mode="ServerPrerendered" />
+            break;
+        case 70:
+            <component type="typeof(Component70)" render-mode="ServerPrerendered" />
+            break;
+        case 80:
+            <component type="typeof(Component80)" render-mode="ServerPrerendered" />
+            break;
+        case 90:
+            <component type="typeof(Component90)" render-mode="ServerPrerendered" />
+            break;
+    }
+</ul>
